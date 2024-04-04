@@ -31,7 +31,7 @@ public class TC02_Amazon extends  BaseTest{
         List<WebElement> searchResults = driver.findElements(Urunler);
         boolean found = false;
         for (WebElement result : searchResults) {
-            if (result.getText().contains("Apple") && result.getText().contains("İphone")) {
+            if (result.getText().contains("Apple") && result.getText().contains("iPhone")){
                 found = true;
                 break;
             }
