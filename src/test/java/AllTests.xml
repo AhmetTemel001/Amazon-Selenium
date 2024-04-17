@@ -1,0 +1,18 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Selenium Test Suite">
+    <test name="Test Scenario 1">
+        <classes>
+            <class name="Amazon.TC01_Amazon"/>
+        </classes>
+    </test>
+    <test name="Test Scenario 2">
+        <classes>
+            <class name="Amazon.TC02_Amazon"/>
+        </classes>
+    </test>
+    <test name="Test Scenario 3">
+        <classes>
+            <class name="Amazon.TC01_Amazon"/>
+        </classes>
+    </test>
+</suite>

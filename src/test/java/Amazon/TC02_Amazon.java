@@ -1,3 +1,5 @@
+package Amazon;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Order;
 import org.openqa.selenium.By;
@@ -9,7 +11,7 @@ import pages.ProductsPage;
 
 import java.util.List;
 
-public class TC02_Amazon extends  BaseTest{
+public class TC02_Amazon extends BaseTest {
     HomePage homePage ;
     ProductsPage productsPage ;
     By Urunler = By.xpath("//a[@class=\"a-link-normal s-underline-text s-underline-link-text s-link-style a-text-normal\"]");
@@ -29,20 +31,12 @@ public class TC02_Amazon extends  BaseTest{
     @Order(2)
     public void verification_a_product(){
         List<WebElement> searchResults = driver.findElements(Urunler);
-        boolean found = false;
         for (WebElement result : searchResults) {
-            if (result.getText().contains("Apple") && result.getText().contains("iPhone")){
-                found = true;
-                break;
+            if (result.getText().toLowerCase().contains("apple") || result.getText().toLowerCase().contains("iphone") || result.getText().toLowerCase().contains("15")){
+                System.out.println("Arama sonuçları doğru.");
+            } else {
+                System.out.println("Arama sonuçları hatalı: " + result.getText());
             }
-        }
-        // Sonucu yazdır
-        if (found) {
-            System.out.println("Arama sonuçları doğru.");
-        }
-        else
-        {
-            System.out.println("Arama sonuçları doğru değil.");
         }
     }
 }

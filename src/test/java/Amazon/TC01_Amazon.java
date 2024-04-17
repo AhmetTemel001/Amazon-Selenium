@@ -1,3 +1,5 @@
+package Amazon;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -5,9 +7,12 @@ import pages.CartPage;
 import pages.HomePage;
 import pages.ProductDetailPage;
 import pages.ProductsPage;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
 
-public class Test_Add_Product_To_Cart extends BaseTest {
-
+@RunWith(Suite.class)
+@Suite.SuiteClasses({TC01_Amazon.class, TC02_Amazon.class, TC03_Amazon.class})
+public class TC01_Amazon extends BaseTest {
     HomePage homePage ;
     ProductsPage productsPage ;
     ProductDetailPage productDetailPage ;
@@ -29,7 +34,7 @@ public class Test_Add_Product_To_Cart extends BaseTest {
     @Order(2)
     public void select_a_product(){//Arama Sonucundaki Ürünü Seçiyo
         productDetailPage = new ProductDetailPage(driver);
-        productsPage.selectProduct(1);
+        productsPage.selectProduct(1);//Liste oluşturup çekilecek.
         Assertions.assertTrue(productDetailPage.isOnProductDetailPage(),
                 "Seçilen Ürünün Detay Sayfasına Ulaşılanamadı");
     }
@@ -47,9 +52,10 @@ public class Test_Add_Product_To_Cart extends BaseTest {
     public  void go_to_cart(){//Sepeti Kontrol Ediyo
         cartPage = new CartPage(driver);
         homePage.goToCart();
-        Assertions.assertTrue(cartPage.checkIfProductAdded() ,
+        Assertions.assertTrue(cartPage.checkIfProductAdded() ,//Seçilen ürünün ismini kabul et.
                 "Ürün Sepete Görüntülenemedi");
     }
+
 
 
 

@@ -1,3 +1,5 @@
+package Amazon;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -9,11 +11,13 @@ import pages.ProductsPage;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Double.parseDouble;
 
 public class TC03_Amazon extends BaseTest {
+    //TESTLERİN HEPSİNİ AYNANDA KOŞ
     By low = By.xpath("//input[@id='low-price']");
     By high = By.xpath("//input[@id='high-price']");
     By Fiyatlar = By.xpath("//span[@class=\"a-price\"and @data-a-size=\"xl\"]");
@@ -52,8 +56,12 @@ public class TC03_Amazon extends BaseTest {
     @Order(3)
     public void pricefiltre() {
 
+
+        By productNameLocator = By.xpath("//a[@class=\"a-link-normal s-underline-text s-underline-link-text s-link-style a-text-normal\"]");
+
+// Sayfadaki tüm ürünleri bulur.
         List<WebElement> productElements = driver.findElements(Fiyatlar);
-        boolean allPricesInRange = true;
+        List<WebElement> outOfRangeProducts = new ArrayList<>();
         for (WebElement productElement : productElements) {
             // Ürün fiyatını al
             WebElement priceElement = productElement.findElement(Fiyatlar);
@@ -64,22 +72,25 @@ public class TC03_Amazon extends BaseTest {
 
             // Fiyat 1000TL ile 2000TL arasında mı kontrol et
             if (price < 1000 || price > 2000) {
-                allPricesInRange = false;
-                break;
+                outOfRangeProducts.add(productElement);
             }
         }
 
-        // Sonucu yazdır
-        if (allPricesInRange) {
-            System.out.println("Tüm ürün fiyatları 1000 TL ile 2000 TL arasında.");
+
+        if (!outOfRangeProducts.isEmpty()) {
+            System.out.println("Aşağıdaki ürünler hatalı fiyatlara sahiptir.");
+            for (WebElement faultyProduct : outOfRangeProducts) {
+                // Hatalı ürünün adını bulcak
+                WebElement productNameElement = faultyProduct.findElement(productNameLocator);
+                String productName = productNameElement.getText();
+                System.out.println(productName);
+            }
         } else {
-            System.out.println("Tüm ürün fiyatları 1000 TL ile 2000 TL arasında değil.");
+            System.out.println("Tüm ürünleri fiyatı doğru");
         }
-
-
     }
     private double parsePrice(String priceText) {
-        String cleanPriceText = priceText.replace("TL", "").trim();
+        String cleanPriceText = priceText.replace("\n", "").replace("TL","").trim();
         return parseDouble(cleanPriceText);
     }
 
