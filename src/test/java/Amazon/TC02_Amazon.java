@@ -1,10 +1,10 @@
 package Amazon;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Order;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import org.testng.annotations.Test;
 import pages.HomePage;
 
 import pages.ProductsPage;
@@ -16,8 +16,7 @@ public class TC02_Amazon extends BaseTest {
     ProductsPage productsPage ;
     By Urunler = By.xpath("//a[@class=\"a-link-normal s-underline-text s-underline-link-text s-link-style a-text-normal\"]");
 
-    @org.junit.jupiter.api.Test
-    @Order(1)
+    @Test(priority = 1)
     public void search_a_product(){
         homePage = new HomePage(driver);
         homePage.acceptCookies();
@@ -27,8 +26,7 @@ public class TC02_Amazon extends BaseTest {
                 "Ürünlerin Sayfasına Ulaşılanamadı");
     }
 
-    @org.junit.jupiter.api.Test
-    @Order(2)
+    @Test(priority = 2)
     public void verification_a_product(){
         List<WebElement> searchResults = driver.findElements(Urunler);
         for (WebElement result : searchResults) {
