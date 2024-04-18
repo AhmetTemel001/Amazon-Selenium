@@ -1,11 +1,10 @@
 package Amazon;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.ProductsPage;
 
@@ -26,8 +25,7 @@ public class TC03_Amazon extends BaseTest {
     ProductsPage productsPage;
 
 
-    @org.junit.jupiter.api.Test
-    @Order(1)
+    @Test(priority = 1)
     public void search_a_product() {
         homePage = new HomePage(driver);
         homePage.acceptCookies();
@@ -37,8 +35,7 @@ public class TC03_Amazon extends BaseTest {
                 "Ürünlerin Sayfasına Ulaşılanamadı");
     }
 
-    @Test
-    @Order(2)
+    @Test(priority = 2)
     public void price() throws InterruptedException, AWTException {
 
         JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -54,8 +51,7 @@ public class TC03_Amazon extends BaseTest {
     }
 
 
-    @Test
-    @Order(3)
+    @Test(priority = 3)
     public void pricefiltre() throws InterruptedException {
         By productNameLocator = By.xpath("//a[@class=\"a-link-normal s-underline-text s-underline-link-text s-link-style a-text-normal\"]");
 

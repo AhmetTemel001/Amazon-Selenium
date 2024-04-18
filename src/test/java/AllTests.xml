@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Regression Suite"  parallel="classes" thread-count="3">
-    <test name="Turkcell Pasaj Tests">
+    <test name="Amazon Web Tests">
         <classes>
             <class name="Amazon.TC01_Amazon"/>
             <class name="Amazon.TC02_Amazon"/>
