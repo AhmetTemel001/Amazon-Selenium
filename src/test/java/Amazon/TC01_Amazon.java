@@ -7,11 +7,7 @@ import pages.CartPage;
 import pages.HomePage;
 import pages.ProductDetailPage;
 import pages.ProductsPage;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
 
-@RunWith(Suite.class)
-@Suite.SuiteClasses({TC01_Amazon.class, TC02_Amazon.class, TC03_Amazon.class})
 public class TC01_Amazon extends BaseTest {
     HomePage homePage ;
     ProductsPage productsPage ;
@@ -20,7 +16,6 @@ public class TC01_Amazon extends BaseTest {
 
     @Test
     @Order(1)
-
     public void search_a_product(){
         homePage = new HomePage(driver);
         homePage.acceptCookies();
@@ -29,7 +24,6 @@ public class TC01_Amazon extends BaseTest {
         Assertions.assertTrue(productsPage.isOnProductPage() ,
                 "Ürünlerin Sayfasına Ulaşılanamadı");
     }
-
     @Test
     @Order(2)
     public void select_a_product(){//Arama Sonucundaki Ürünü Seçiyo
@@ -55,9 +49,4 @@ public class TC01_Amazon extends BaseTest {
         Assertions.assertTrue(cartPage.checkIfProductAdded() ,//Seçilen ürünün ismini kabul et.
                 "Ürün Sepete Görüntülenemedi");
     }
-
-
-
-
-
 }
